@@ -1,6 +1,21 @@
 # 基于 koa2+typescript+sequelize+seagger的服务端框架
 
+附加说明
+```bash
+  默认去掉了掉redis 跟mysql的连接 需要的话 
 
+1.在app.ts
+ sequelizeInit()
+
+  store: redisStore({
+       port: redisConf.port,
+       host: redisConf.host
+   })
+
+   恢复这两段
+2. 在common/config/env 文件修改mysql个redis对应的配置即可
+
+```
 命令介绍
 ```bash
 npm install 安装依赖
