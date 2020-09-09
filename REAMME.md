@@ -96,5 +96,5 @@ services(服务):获取数据并格式化数据(跟数据库打交道)
 ├── jest.setup.js   jest 的脚本文件
 ├── nodemon.json  nodemon的配置文件
 ├── pm2.conf.json pm2的配置文件
-├── tsconfig.json ts的配置文件
+└── tsconfig.json ts的配置文件
 ```
