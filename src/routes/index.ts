@@ -21,9 +21,9 @@ export default class Common {
      * 接口实例
      * @param ctx Context
      */
-    @request('get', '/check')
+    @request('get', '/test')
     @tags(['aa'])
-    @summary('创建用户')
+    @summary('测试实例')
     @description('api description')
     @responses({ 200: { description: 'success' }, 400: { description: 'error' } })
     @query({
@@ -32,42 +32,38 @@ export default class Common {
     @middlewares([test_middleware])
     //  @get('/check')
     async test(ctx: Context) {
-        getSquareCacheList(1, 1)
         ctx.session.u = 'ss'
         ctx.body = {
             code: 0,
             msg: '登录有效'
         }
 
-
-        //addTest, updateTest, updateTestById 
-
-
-        //const res = await  Test1.addTest({ userId: 3, age: 11, garden: 2 })
-
-        // const res = await Test1.updateTest({ age: 11, garden: 1 }, { userId: 3 })
-
-        //const res = await Test1.updateTestById({ age: 1551, garden: 3 }, 1)
-
-        // const res = await getTestList()
-
-        //const res = await Test1.getTestList()
-
-        //const res = await getTestById(1)
-
-        //  log.log(2323, JSON.stringify(res))
-
-        //const res = await Test1.delTestById(2)
-
-        //const res = await HasManyTest1(1)
-
-        // const res = await Test.findData()
-
-        const res = await Test1.BelongsToTest()
-
-        log.log(2323, JSON.stringify(res))
     }
 
+    // @request('get', '/testdb')
+    // @tags(['aa'])
+    // @summary('含有数据库请求的实例需要有mysql数据库')
+    // @description('api description')
+    // @responses({ 200: { description: 'success' }, 400: { description: 'error' } })
+    // @query({
+    //     type: { type: 'number', required: true, default: 2, description: 'type' },
+    // })
+    // @middlewares([test_middleware])
+    // //  @get('/check')
+    // async testDB(ctx: Context) {
+    //     getSquareCacheList(1, 1)
+    //     ctx.session.u = 'ss'
+    //     ctx.body = {
+    //         code: 0,
+    //         msg: '登录有效'
+    //     }
+
+    //     const res = await Test1.BelongsToTest()
+
+    //     log.log(2323, JSON.stringify(res))
+    // }
+
 }
+
 
 export const ss = function () { return 1 }

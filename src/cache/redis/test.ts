@@ -3,9 +3,7 @@
  * @author 文亮
  */
 
-// const { redisSet, redisGet } = require('./_redis')
 import { redisSet, redisGet } from './_redis'
-//const { getBlogList } = require('../services/blog')
 const SQUARE_KEY = 'koa:square:'
 
 /**

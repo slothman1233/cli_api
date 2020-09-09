@@ -13,8 +13,8 @@ import swaggerRouter from './swagger_router'
 
 
 import sequelizeInit from './db/sequelize/index'
-//sequelize 初始化
-sequelizeInit()
+//sequelize 初始化 需要则恢复 需要在config里面配置
+// sequelizeInit()
 
 
 const redisConf = config.redis
@@ -33,6 +33,7 @@ if (notTest) {
 }
 
 //session 配置
+
 app.keys = redisConf.keys
 app.use(session({
     key: 'koa.sid', //cookie name 默认是 `koa.sid`
@@ -42,11 +43,11 @@ app.use(session({
     httpOnly: true, //默认配置
     maxAge: 24 * 60 * 60 * 1000, //单位毫秒
 
-    ///redis的设置
-    store: redisStore({
-        port: redisConf.port,
-        host: redisConf.host
-    })
+    ///redis的设置 需要则恢复  需要在config里面配置
+    // store: redisStore({
+    //     port: redisConf.port,
+    //     host: redisConf.host
+    // })
 }, app))
 
 
