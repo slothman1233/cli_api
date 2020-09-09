@@ -1,4 +1,4 @@
-# 基于 koa2+typescript+sequelize+seagger的服务器框架
+# 基于 koa2+typescript+sequelize+seagger的服务端框架
 
 
 命令介绍
