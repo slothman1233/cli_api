@@ -1,12 +1,27 @@
 import http from 'http'
 import qs from 'querystring'
+import { SuccessModel, ErrorModel } from '../../model/resModel'
+
+type requestModel = {
+    path: string,
+    hostname?: string,
+    port?: number,
+    method?: string
+}
+
+type postModel = {
+    path: string,
+    hostname?: string,
+    port?: number
+}
+
 
 /**
  * http get
  * @param  {String} url 
  * @param  {Object} form 
  */
-function get(url: string, form: { [P: string]: any }) {
+function get(url: string, form?: { [P: string]: any }) {
     return new Promise((resolve, reject) => {
         let body = ''
         http.get(url + '?' + qs.stringify(form), res => {
@@ -16,25 +31,51 @@ function get(url: string, form: { [P: string]: any }) {
             })
 
             res.on('end', () => {
-                resolve(body)
+                let data = body
+                try {
+                    data = JSON.parse(body)
+                } catch (e) {
+
+                }
+
+                resolve(new SuccessModel({
+                    bodymessage: data,
+                    subcode: 1233213,
+                    message: '成功'
+                }))
+
             }).on('error', err => {
-                reject(err)
+                reject(
+                    new ErrorModel({
+                        bodymessage: null,
+                        subcode: 1233213,
+                        message: `message:${err.message},stack:${err.stack}`
+                    })
+                )
             })
         })
     })
 }
 
 /**
+ * http post
+ * @param  {Object} form 
+ */
+function post(opt: postModel, form: { [P: string]: any }) {
+    return request(opt, form)
+}
+
+/**
  * http request post
  * @param  {Object} form 
  */
-function request(opt: { path: string }, form: { [P: string]: any }) {
+function request(opt: requestModel, form: { [P: string]: any }) {
     const postData = qs.stringify(form)
     const options = {
-        hostname: '127.0.0.1',
-        port: 80,
+        hostname: opt.hostname || '127.0.0.1',
+        port: opt.port || 3001,
         path: opt.path,
-        method: 'POST',
+        method: opt.method || 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
             'Content-Length': Buffer.byteLength(postData)//post必须加这个
@@ -53,12 +94,30 @@ function request(opt: { path: string }, form: { [P: string]: any }) {
                 if (firstCode !== 123) {
                     reject(new Error('server return unexpect data: ' + body))
                 }
-                resolve(body)
+                let data = body
+                try {
+                    data = JSON.parse(body)
+                } catch (e) {
+
+                }
+
+                
+                resolve(new SuccessModel({
+                    bodymessage: data,
+                    subcode: 1233213,
+                    message: '成功'
+                }))
             })
         })
 
         req.on('error', err => {
-            reject(err)
+            reject(
+                new ErrorModel({
+                    bodymessage: null,
+                    subcode: 1233213,
+                    message: `message:${err.message},stack:${err.stack}`
+                })
+            )
         })
 
         // post form
@@ -69,5 +128,6 @@ function request(opt: { path: string }, form: { [P: string]: any }) {
 
 export {
     get,
+    post,
     request
 }
