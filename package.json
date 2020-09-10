@@ -4,7 +4,7 @@
     "description": "",
     "main": "gulpfile .js",
     "scripts": {
-        "start": "cross-env NODE_ENV=dev ./node_modules/.bin/nodemon --inspect=9230 src/bin/www.ts",
+        "start": "cross-env NODE_ENV=dev ./node_modules/.bin/nodemon --inspect=9229 src/bin/www.ts",
         "start:dev": "cross-env NODE_ENV=dev ./node_modules/.bin/nodemon --inspect=9229 src/bin/www.ts",
         "start:test": "cross-env NODE_ENV=test ./node_modules/.bin/nodemon --inspect=9229 src/bin/www.ts",
         "start:pre": "cross-env NODE_ENV=pre ./node_modules/.bin/nodemon --inspect=9229 src/bin/www.ts",
