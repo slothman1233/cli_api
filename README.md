@@ -16,15 +16,19 @@
 2. 在common/config/env 文件修改mysql个redis对应的配置即可
 
 ```
-命令介绍
+运行命令
 ```bash
+
 npm install 安装依赖
 
 npm run start 
+```
 
-浏览[http://localhost:3000/api/swagger-html](http://localhost:3000/api/swagger-html)即可（如果修改了端口请自行调整端口）
-[http://47.113.105.208:8088/](http://47.113.105.208:8088/)
 
+### 浏览[http://localhost:3000/api/swagger-html](http://localhost:3000/api/swagger-html)即可（如果修改了端口请自行调整端口）
+
+命令介绍
+```bash
 npm run start     -----  开发使用
 npm run start:dev -----  dev 环境  采用对应的开发
 npm run start:test  -----  test 环境  采用对应的开发
