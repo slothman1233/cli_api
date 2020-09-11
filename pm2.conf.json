@@ -1,16 +1,19 @@
 {
     "apps": {
+        "cwd": "./",
         "name": "koa_ts",
-        "script": "bin/www.js",
+        "script": "src/bin/www.ts",
         "watch": true,
         "ignore_watch": [
             "node_modules",
             "logs",
-            "uploadFiles"
+            "test",
+            "dist",
+            "coverage"
         ],
         "instances": "max",
-        "error_file": "./logs/err.log",
-        "out_file": "./logs/out.log",
+        "error_file": "./logs/pm2/err.log",
+        "out_file": "./logs/pm2/out.log",
         "log_date_format": "YYYY-MM-DD HH:mm:ss",
         "merge_logs": true
     }

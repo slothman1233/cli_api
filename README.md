@@ -20,6 +20,7 @@
 ```bash
 
 npm install 安装依赖
+pm2 install typescript
 
 npm run start 
 ```
@@ -63,6 +64,8 @@ services(服务):获取数据并格式化数据(跟数据库打交道)
 ```
 ├── coverage  单元测试报告文件夹
 ├── logs  pm2 下的日志文件 
+│   ├── log4js 程序日志
+│   └── pm2 系统日志
 ├── dist  生产代码文件夹
 ├── src
 │   ├── bin 启动文件
@@ -81,11 +84,9 @@ services(服务):获取数据并格式化数据(跟数据库打交道)
 │   │   └── utils   工具文件夹
 │   │       ├── cryp.ts   md5加密
 │   │       ├── env.ts   各种环境判断
-│   │       ├── logger.ts   日志工具类
 │   │       ├── net.ts   http请求的工具类
 │   │       ├── type_check.ts   类型判断工具类
 │   │       └── util.ts   常用的工具
-│   ├── common  公共文件
 │   ├── controller  用于处理逻辑的文件夹
 │   ├── db  用于跟数据库对接的文件
 │   │   └── mysql  使用mysql原生的方式对接数据库
@@ -100,6 +101,7 @@ services(服务):获取数据并格式化数据(跟数据库打交道)
 │   │       ├── sync.ts   创建数据库表的方式 一般情况下直接先在数据库创建表  不推荐通过这个方式创建
 │   │       └── types.ts  sequelize 数据类型
 │   ├── middleware  中间件文件夹
+│   │   ├── log4js  日志中间件
 │   │   └── test.ts   中间件示例
 │   ├── model  模型文件夹
 │   ├── routes  路由文件夹

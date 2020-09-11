@@ -1,4 +1,4 @@
-import koa, { Context } from 'koa'
+import koa, { Context, Next } from 'koa'
 import json from 'koa-json'
 import bodyparser from 'koa-bodyparser'
 import logger from 'koa-logger'
@@ -6,12 +6,12 @@ import session from 'koa-session'
 // import koaRouter from 'koa-router'
 import redisStore from 'koa-redis'
 import config from './common/config/env'
-import log from './common/utils/logger'
+// import log from './common/utils/logger'
 import { notTest } from './common/utils/env'
 // import addRouter from './router'
 import swaggerRouter from './swagger_router'
 
-
+import log from './middleware/log4js/log'
 import sequelizeInit from './db/sequelize/index'
 //sequelize 初始化 需要则恢复 需要在config里面配置
 // sequelizeInit()
@@ -28,9 +28,9 @@ app.use(bodyparser({
 }))
 app.use(json())
 
-if (notTest) {
-    app.use(logger())
-}
+// if (notTest) {
+//     app.use(logger())
+// }
 
 //session 配置
 
@@ -51,30 +51,28 @@ app.use(session({
 }, app))
 
 
-//全局的放错处理
-app.use(async (ctx, next) =>{
-    try{ 
-        await next()
-    }catch(err){
-        log.error(`message:${err.message} -- stack:${err.stack}`)
-    }
-})
+if (notTest) {
+// logger 日志
+    app.use(async (ctx: Context, next: Next) => {
+    //响应开始时间
+        const start = Date.now()
+        //响应间隔时间
+        let ms:number
+        try {
+        //开始进入到下一个中间件
+            await next()
+            //记录响应日志
+            ms = Date.now() - start
+            log.info(ctx, ms)
+        } catch (error) {
+        //记录异常日志
+            ms = Date.now() - start
+            log.error(ctx, error, ms)
+        }
 
-
-// 404
-// app.use(async (ctx: Context) => {
-//     log.error(`404 ${ctx.message} : ${ctx.href}`)
-//     ctx.status = 404
-//     ctx.body = '404! content not found !'
-// })
-
-// logger
-// app.use(async (ctx, next) => {
-//     const start:Date = new Date()
-//     await next()
-//     const ms = new Date() - start
-//     console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
-// })
+        log.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
+    })
+}
 
 //路由初始化
 // addRouter(router)
@@ -84,14 +82,14 @@ app.use(swaggerRouter.routes()).use(swaggerRouter.allowedMethods())
 
 // 404
 app.use(async (ctx: Context) => {
-    log.error(`404 ${ctx.message} : ${ctx.href}`)
+    log.log(`404 ${ctx.message} : ${ctx.href}`)
     ctx.status = 404
     ctx.body = '404! content not found !'
 })
 
 // 错误处理
 app.on('error', (err, ctx) => {
-    console.error('server error', err, ctx)
+    log.error( ctx, err,  0)
     ctx.status = 500
     if (ctx.app.env !== 'development') { //throw the error to frontEnd when in the develop mode
         ctx.res.end(err.stack) //finish the response
