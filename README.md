@@ -1,4 +1,4 @@
-# 基于 koa2+typescript+sequelize+seagger的服务端框架
+# 基于 koa2+typescript+sequelize+log4js+seagger的服务端框架
 
 附加说明
 ```bash
