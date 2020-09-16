@@ -1,13 +1,13 @@
 
 import log4js from './index'
 import { Context } from 'koa'
-import { isDev } from '../../common/utils/env'
+import { isDev, isDocker } from '../../common/utils/env'
 
 let errorLog = log4js.getLogger('errorLog') //此处使用category的值
 let resLog = log4js.getLogger('responseLog') //此处使用category的值
 let debugLog = log4js.getLogger('debugLog')
 
-if(isDev){
+if(isDocker || isDev){
     resLog.info = console.log
     errorLog.error = console.error
     debugLog.debug = console.log
