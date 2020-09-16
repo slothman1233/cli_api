@@ -18,12 +18,7 @@
         "experimentalDecorators": true, // 开启装饰器的使用
         "emitDecoratorMetadata": true,
         "allowJs": true,
-        "sourceMap": true,
-        "paths": {
-            "@/*": [
-                "src/*"
-            ]
-        }
+        "sourceMap": true
     },
     "presets": [
         ["env", {"targets": {"node": "current"}}]

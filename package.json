@@ -23,7 +23,11 @@
         "pm2:monit": "pm2 monit",
         "eslint": "eslint --fix --ext .js,.ts src/",
         "jest:test": "cross-env NODE_ENV=jest jest --runInBand --forceExit --colors --coverage",
-        "docker": "cross-env NODE_ENV=ga node bin/www.js"
+        "docker": "cross-env NODE_ENV=docker_ga DOCKER=docker PORT=80 node bin/www.js",
+        "docker:dev": "cross-env NODE_ENV=docker_dev DOCKER=docker PORT=80 node bin/www.js",
+        "docker:test": "cross-env NODE_ENV=docker_test DOCKER=docker PORT=80 node bin/www.js",
+        "docker:pre": "cross-env NODE_ENV=docker_pre DOCKER=docker PORT=80 node bin/www.js",
+        "docker:ga": "cross-env NODE_ENV=docker_ga DOCKER=docker PORT=80 node bin/www.js"
     },
     "dependencies": {
         "cross-env": "^7.0.2",
@@ -39,7 +43,9 @@
         "koa-session": "^6.0.0",
         "koa-static": "^5.0.0",
         "koa-swagger-decorator": "^1.6.8",
+        "log4js": "^6.3.0",
         "mysql2": "^2.1.0",
+        "pm2-intercom": "^1.0.0",
         "redis": "^3.0.2",
         "reflect-metadata": "^0.1.13",
         "sequelize": "^6.3.5",

@@ -22,4 +22,8 @@ export const ROUTER_MAP = {
      * action 对象
      */
     ROUTER_META: Symbol('router_meta'),
+    /**
+    * 中间件对象
+    */
+    MIDDLEWARE: Symbol('middleware'),
 }

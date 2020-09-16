@@ -5,8 +5,9 @@ import getSquareCacheList from '../cache/redis/test'
 import { request, summary, prefix, tags, body, responses, description, query, middlewares } from 'koa-swagger-decorator'
 import { test_middleware } from '../middleware/test'
 import { addTest, updateTest, updateTestById, getTestList, getTestById, delTestById, HasManyTest1 } from '../services/test.services'
-import * as Test1 from '../services/test1.services'
+
 import log from '../common/utils/logger'
+import { testBelongs } from '../controller'
 
 
 
@@ -23,7 +24,7 @@ export default class Common {
      */
     @request('get', '/test')
     @tags(['aa'])
-    @summary('测试实例')
+    @summary('测试实例get')
     @description('api description')
     @responses({ 200: { description: 'success' }, 400: { description: 'error' } })
     @query({
@@ -37,6 +38,34 @@ export default class Common {
             code: 0,
             msg: '登录有效'
         }
+
+    }
+
+
+    /**
+   * 接口实例
+   * @param ctx Context
+   */
+    @request('post', '/testpost')
+    @tags(['aa'])
+    @summary('测试实例post')
+    @description('api description')
+    @responses({ 200: { description: 'success' }, 400: { description: 'error' } })
+    // @body([{
+    //     type: { type: 'number', required: true, default: 2, description: 'type' },
+    //     name: { type: 'string', required: true, default: '2', description: 'type' },
+    //     age: { type: 'number', required: true, default: 2, description: 'type' },
+    // }])
+    @body({
+        type: { type: 'number', required: true, default: 2, description: '描述' },
+        name: { type: 'string', required: true, default: '2', description: '描述' },
+        age: { type: 'number', required: true, default: 2, description: '描述' },
+    })
+    @middlewares([test_middleware])
+    async testpost(ctx: Context) {
+        ctx.session.u = 'ss'
+        ctx.request.body
+        ctx.body = ctx.request.body
 
     }
 
@@ -58,7 +87,7 @@ export default class Common {
     //         msg: '登录有效'
     //     }
 
-    //     const res = await Test1.BelongsToTest()
+    //     const res = await testBelongs()
 
     //     log.log(2323, JSON.stringify(res))
     // }
