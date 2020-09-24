@@ -2,24 +2,26 @@
 
 附加说明
 ```bash
-  默认去掉了掉redis 跟mysql的连接 需要的话 
+默认去掉了掉redis 跟mysql的连接 需要的话 
 
-1.在app.ts
- sequelizeInit()
+  1.在app.ts
+  sequelizeInit()
 
-  store: redisStore({
-       port: redisConf.port,
-       host: redisConf.host
-   })
+    store: redisStore({
+        port: redisConf.port,
+        host: redisConf.host
+    })
 
-   恢复这两段
-2. 在common/config/env 文件修改mysql个redis对应的配置即可
+    恢复这两段
+  2. 在common/config/env 文件修改mysql个redis对应的配置即可
 
-  需要使用mongodb的话
+需要使用mongodb的话
+
   在app.ts 里面
-1.import './db/mongodb'
-  恢复这段话
-2.在common/config/env 文件修改mongodb对应的配置即可
+  
+  1.import './db/mongodb'  恢复这段话
+
+  2.在common/config/env 文件修改mongodb对应的配置即可
 
 ```
 运行命令（输入完成后浏览[http://localhost:3000/api/swagger-html](http://localhost:3000/api/swagger-html)即可--如果修改了端口请自行调整端口）
