@@ -1,4 +1,4 @@
-# 基于 koa2+typescript+sequelize+log4js+seagger的服务端框架
+# 基于 koa2+typescript+sequelize+mongodb+log4js+seagger的服务端框架
 
 附加说明
 ```bash
@@ -14,6 +14,12 @@
 
    恢复这两段
 2. 在common/config/env 文件修改mysql个redis对应的配置即可
+
+  需要使用mongodb的话
+  在app.ts 里面
+1.import './db/mongodb'
+  恢复这段话
+2.在common/config/env 文件修改mongodb对应的配置即可
 
 ```
 运行命令（输入完成后浏览[http://localhost:3000/api/swagger-html](http://localhost:3000/api/swagger-html)即可--如果修改了端口请自行调整端口）
