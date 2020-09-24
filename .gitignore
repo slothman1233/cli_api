@@ -6,3 +6,5 @@ logs
 public/upload/**/*.*
 *.log
 .DS_Store
+typings
+typings.json

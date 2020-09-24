@@ -1,22 +1,22 @@
 type bodyModel<T> = {
-  subcode: number,
-  code?: number,
-  message: string,
-  bodymessage: T
+    subcode: number,
+    code?: number,
+    message: string,
+    bodymessage: T
 }
 
 
 class BaseModel<T> {
-  bodymessage: T
-  code: number
-  subcode: number
-  message: string
-  constructor({ bodymessage, code, subcode, message }: bodyModel<T>) {
-      this.bodymessage = bodymessage
-      this.code = code
-      this.subcode = subcode
-      this.message = message
-  }
+    bodymessage: T
+    code: number
+    subcode: number
+    message: string
+    constructor({ bodymessage, code, subcode, message }: bodyModel<T>) {
+        this.bodymessage = bodymessage
+        this.code = code
+        this.subcode = subcode
+        this.message = message
+    }
 }
 
 /**
@@ -47,5 +47,6 @@ class ErrorModel<T> extends BaseModel<T> {
 
 export {
     SuccessModel,
-    ErrorModel
+    ErrorModel,
+    bodyModel
 }

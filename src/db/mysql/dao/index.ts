@@ -10,7 +10,7 @@ import { PlainObject, MysqlResult } from '../../../common/type/type'
 // 	delete: 'delete from user where ?'
 // });
 
-
+//dao全称是data access object，数据库访问对象，主要的功能就是用于进行数据操作的，在程序的标准开发架构中属于数据层的操作
 export const sql = exportDao('')
 export const count: (arg: PlainObject) => Promise<PlainObject[]> = exportDao('select count(*) as count from user where ?')
 export const getUser: (arg: PlainObject) => Promise<PlainObject[]> = exportDao('select * from user where ?')

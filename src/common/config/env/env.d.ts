@@ -52,7 +52,11 @@ type env = {
     /**
      * redis 配置
      */
-    redis: redis
+    redis: redis,
+    /**
+     * mongodb 配置
+     */
+    mongodb: string
 }
 
 export {

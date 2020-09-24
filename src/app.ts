@@ -12,10 +12,13 @@ import { notTest } from './common/utils/env'
 import swaggerRouter from './swagger_router'
 
 import log from './middleware/log4js/log'
-import sequelizeInit from './db/sequelize/index'
+// import './db/sequelize/index'
 //sequelize 初始化 需要则恢复 需要在config里面配置
-// sequelizeInit()
 
+
+import './db/mongodb'
+
+// log.log(mdb.toString())
 
 const redisConf = config.redis
 // const router = new koaRouter()
@@ -52,22 +55,22 @@ app.use(session({
 
 
 if (notTest) {
-// logger 日志
+    // logger 日志
     app.use(async (ctx: Context, next: Next) => {
-    //响应开始时间
+        //响应开始时间
         const start = Date.now()
         //响应间隔时间
-        let ms:number
+        let ms: number
         try {
-        //开始进入到下一个中间件
+            //开始进入到下一个中间件
             await next()
             //记录响应日志
             ms = Date.now() - start
             log.info(ctx, ms)
         } catch (error) {
-        //记录异常日志
+            //记录异常日志
             ms = Date.now() - start
-            log.error(ctx, error, ms)
+            log.error({ ctx, error, resTime: ms })
         }
 
         log.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
@@ -89,7 +92,7 @@ app.use(async (ctx: Context) => {
 
 // 错误处理
 app.on('error', (err, ctx) => {
-    log.error( ctx, err,  0)
+    log.error({ ctx, error: err, resTime: 0 })
     ctx.status = 500
     if (ctx.app.env !== 'development') { //throw the error to frontEnd when in the develop mode
         ctx.res.end(err.stack) //finish the response

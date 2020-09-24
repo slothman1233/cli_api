@@ -3,7 +3,7 @@
         "baseUrl": ".", // import的相对起始路径
         "outDir": "./dist", // 构建输出目录
         "module": "commonjs",
-        "target": "esnext", // node 环境支持 esnext
+        "target": "es2018", // node 环境支持 esnext
         "allowSyntheticDefaultImports": true,
         "importHelpers": true,
         "strict": false,

@@ -7,7 +7,7 @@ let errorLog = log4js.getLogger('errorLog') //此处使用category的值
 let resLog = log4js.getLogger('responseLog') //此处使用category的值
 let debugLog = log4js.getLogger('debugLog')
 
-if(isDocker || isDev){
+if (isDocker || isDev) {
     resLog.info = console.log
     errorLog.error = console.error
     debugLog.debug = console.log
@@ -20,13 +20,15 @@ const info = function (ctx: Context, resTime: number) {
     }
 }
 
-const error = function (ctx: Context, error: any, resTime: number) {
+const error = function ({ ctx, error, resTime }: { ctx: Context, error: any, resTime: number }) {
     if (ctx && error) {
         errorLog.error(formatError(ctx, error, resTime))
+    }else{
+        console.error(error)
     }
 }
 
-const _log = function (str: string): void {
+const _log = function (str: any): void {
     try {
         if (!str) {
             debugLog.debug('null')

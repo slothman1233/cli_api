@@ -89,6 +89,12 @@ services(服务):获取数据并格式化数据(跟数据库打交道)
 │   │       └── util.ts   常用的工具
 │   ├── controller  用于处理逻辑的文件夹
 │   ├── db  用于跟数据库对接的文件
+│   │   └── mongodb  mongodb的文件夹
+│   │   │   ├── mapping 跟mongodb里面表连接的创建 (必须已.mapping.ts结尾)
+│   │   │   ├── model   对应数据库字段的模型的文件夹
+│   │   │   ├── tables   公用的底层数据模型
+│   │   │   │   └── base.table.ts   通用基座
+│   │   │   └── index.ts   mongodb 连接创建的入口文件
 │   │   └── mysql  使用mysql原生的方式对接数据库
 │   │   │   ├── dao   数据库语句组合的工具文件夹
 │   │   │   ├── dbHelper.ts   查询数据的组件
