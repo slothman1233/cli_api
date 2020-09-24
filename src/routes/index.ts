@@ -7,7 +7,7 @@ import { test_middleware } from '../middleware/test'
 import { addTest, updateTest, updateTestById, getTestList, getTestById, delTestById, HasManyTest1 } from '../services/test.services'
 
 import log from '../common/utils/logger'
-import { testBelongs } from '../controller'
+import { mongodb_create, mongodb_deleteById, mongodb_deleteMany, mongodb_getuserbyid, mongodb_getuserinfo, mongodb_selectmany, mongodb_selectPageQuery, mongodb_update, testBelongs } from '../controller'
 
 
 
@@ -23,7 +23,7 @@ export default class Common {
      * @param ctx Context
      */
     @request('get', '/test')
-    @tags(['aa'])
+    @tags(['示例'])
     @summary('测试实例get')
     @description('api description')
     @responses({ 200: { description: 'success' }, 400: { description: 'error' } })
@@ -47,15 +47,10 @@ export default class Common {
    * @param ctx Context
    */
     @request('post', '/testpost')
-    @tags(['aa'])
+    @tags(['示例'])
     @summary('测试实例post')
     @description('api description')
     @responses({ 200: { description: 'success' }, 400: { description: 'error' } })
-    // @body([{
-    //     type: { type: 'number', required: true, default: 2, description: 'type' },
-    //     name: { type: 'string', required: true, default: '2', description: 'type' },
-    //     age: { type: 'number', required: true, default: 2, description: 'type' },
-    // }])
     @body({
         type: { type: 'number', required: true, default: 2, description: '描述' },
         name: { type: 'string', required: true, default: '2', description: '描述' },
@@ -68,6 +63,29 @@ export default class Common {
         ctx.body = ctx.request.body
 
     }
+
+    @request('get', '/mongodbtest')
+    @tags(['示例'])
+    @summary('测试mongdb实例get')
+    @description('api description')
+    @responses({ 200: { description: 'success' }, 400: { description: 'error' } })
+    @query({
+        id: { type: 'string', required: true, default: '5f69e49a331392288886398a', description: '用户id' },
+    })
+    async mongodbtest(ctx: Context) {
+        const { id } = ctx.query
+        // const res = await mongodb_update(
+        //     { _id: id },
+        //     { username: '53', password: '1', garden: 0, status: 1 }
+        // )
+
+        // const res = await mongodb_deleteById(id)
+
+        const res = await mongodb_create( { username: '53', password: '1', garden: 1, status: 1 })
+
+        ctx.body = res
+    }
+
 
     // @request('get', '/testdb')
     // @tags(['aa'])

@@ -41,27 +41,22 @@ const config = {
     }
 }
 
-async function sequelizeInit(){
-    
-     
-    //创建与数据库的链接、初始化模型
-    const sequelize = new Sequelize(config)
-    //sequelize跟数据库对应的表进行连接
-    sequelize.addModels([path.resolve(__dirname, `./mapping/`)])
+//创建与数据库的链接、初始化模型
+const sequelize = new Sequelize(config)
+//sequelize跟数据库对应的表进行连接
+sequelize.addModels([path.resolve(__dirname, `./mapping/`)])
 
-    sequelize.authenticate().then(async () => {
-        log.log('数据库连接成功')
+sequelize.authenticate().then(async () => {
+    log.log('数据库连接成功')
 
 
 
+})
+    .catch(err => {
+        log.error('无法连接到数据库', err)
     })
-        .catch(err => {
-            log.error('无法连接到数据库', err)
-        })
-
-}
 
 
 // 同步数据库  创建所有的数据库
 // createTables()
-export default sequelizeInit
+export default sequelize

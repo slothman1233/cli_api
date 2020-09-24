@@ -16,7 +16,7 @@ import { CreateOptions, UpdateOptions } from 'sequelize/types'
  */
 async function addTest({ name, weight }: { name: string, weight: number }) {
     const res = await Test.createItem<Test>(
-    // @ts-ignore
+        // @ts-ignore
         {
             name,
             weight
@@ -99,12 +99,12 @@ async function delTestById(id: number) {
  * 连表查询  HasMany 1对多
  * @param id 
  */
-async function HasManyTest1(id:number) {
+async function HasManyTest1(id: number) {
     const res: any = await Test.findOne({
         where: {
             id: 1
         },
-       
+
         include: [{
             // @ts-ignore
             model: Test1

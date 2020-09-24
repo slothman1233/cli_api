@@ -17,7 +17,7 @@ export const exportDao = (sql: string) => {
 }
 
 /**
- * sql transaction
+ * sql 事务
  * @param  {Array} list 
  * const rets = await transaction([
  *     ["insert into user_group values (?,?)",[11,11]],

@@ -19,5 +19,6 @@ export default {
         port: 6379,
         keys: [SESSION_SECRET_KEY]
     },
+    mongodb: 'mongodb://127.0.0.1:27017/test'
 
 }
