@@ -12,11 +12,12 @@ import { notTest } from './common/utils/env'
 import swaggerRouter from './swagger_router'
 
 import log from './middleware/log4js/log'
-// import './db/sequelize/index'
 //sequelize 初始化 需要则恢复 需要在config里面配置
+// import './db/sequelize/index'
 
 
-import './db/mongodb'
+//mongodb 初始化 需要则恢复 需要在config里面配置
+// import './db/mongodb'
 
 // log.log(mdb.toString())
 
