@@ -80,6 +80,7 @@ export default class Common {
         // )
 
         // const res = await mongodb_deleteById(id)
+        console.log(id)
 
         const res = await mongodb_create( { username: '53', password: '1', garden: 1, status: 1 })
 
