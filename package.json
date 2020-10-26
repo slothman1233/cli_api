@@ -30,7 +30,7 @@
         "docker:ga": "cross-env NODE_ENV=docker_ga DOCKER=docker PORT=80 node bin/www.js"
     },
     "dependencies": {
-        "@types/mongoose": "^5.7.36",
+        
         "cross-env": "^7.0.2",
         "crypto": "^1.0.1",
         "debug": "^4.1.1",
@@ -57,6 +57,7 @@
         "xss": "^1.0.8"
     },
     "devDependencies": {
+        "@types/mongoose": "^5.7.36",
         "@types/bluebird": "^3.5.32",
         "@types/debug": "^4.1.5",
         "@types/ioredis": "^4.17.3",
