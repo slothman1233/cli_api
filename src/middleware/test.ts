@@ -14,7 +14,8 @@ import { Context, Next } from 'koa'
  * @param {Next} next next
  */
 async function test_middleware(ctx: Context, next: Next){
-    if(ctx.query.type && parseInt(ctx.query.type) === 1){
+    console.log(ctx.request.body, ctx.query.type && parseInt(ctx.query.type) === 1)
+    if((ctx.query.type && parseInt(ctx.query.type) === 1) || (ctx.request.body.type && parseInt(ctx.request.body.type) === 1)){
         ctx.body = {
             aa: 1
         } 

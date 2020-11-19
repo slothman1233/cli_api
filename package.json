@@ -30,12 +30,12 @@
         "docker:ga": "cross-env NODE_ENV=docker_ga DOCKER=docker PORT=80 node bin/www.js"
     },
     "dependencies": {
-        
         "cross-env": "^7.0.2",
         "crypto": "^1.0.1",
         "debug": "^4.1.1",
         "koa": "^2.13.0",
         "koa-bodyparser": "^4.3.0",
+        "koa-compress": "^5.0.1",
         "koa-json": "^2.0.2",
         "koa-logger": "^3.2.1",
         "koa-onerror": "^4.1.0",
@@ -44,6 +44,7 @@
         "koa-session": "^6.0.0",
         "koa-static": "^5.0.0",
         "koa-swagger-decorator": "^1.6.8",
+        "koa2-cors": "^2.0.6",
         "log4js": "^6.3.0",
         "mongoose": "^5.10.5",
         "mysql2": "^2.1.0",

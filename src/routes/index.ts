@@ -7,7 +7,8 @@ import { test_middleware } from '../middleware/test'
 import { addTest, updateTest, updateTestById, getTestList, getTestById, delTestById, HasManyTest1 } from '../services/test.services'
 
 import log from '../common/utils/logger'
-import { mongodb_create, mongodb_deleteById, mongodb_deleteMany, mongodb_getuserbyid, mongodb_getuserinfo, mongodb_selectmany, mongodb_selectPageQuery, mongodb_update, testBelongs } from '../controller'
+import { mongodb_create, testpostC, mongodb_deleteById, mongodb_deleteMany, mongodb_getuserbyid, mongodb_getuserinfo, mongodb_selectmany, mongodb_selectPageQuery, mongodb_update, testBelongs } from '../controller'
+import { SuccessModel } from '../model/resModel'
 
 
 
@@ -59,8 +60,11 @@ export default class Common {
     @middlewares([test_middleware])
     async testpost(ctx: Context) {
         ctx.session.u = 'ss'
-        ctx.request.body
-        ctx.body = ctx.request.body
+
+        let s = await testpostC(ctx.request.body)
+
+        log.log(`ssss:${s}`)
+        ctx.body = s
 
     }
 
@@ -82,7 +86,7 @@ export default class Common {
         // const res = await mongodb_deleteById(id)
         console.log(id)
 
-        const res = await mongodb_create( { username: '53', password: '1', garden: 1, status: 1 })
+        const res = await mongodb_create({ username: '53', password: '1', garden: 1, status: 1 })
 
         ctx.body = res
     }
