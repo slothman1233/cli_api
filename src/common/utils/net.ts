@@ -38,16 +38,16 @@ function get(url: string, form?: { [P: string]: any }) {
 
                 }
 
-                resolve(new SuccessModel({
-                    bodymessage: data,
+                resolve(new SuccessModel<any>({
+                    bodyMessage: data,
                     subcode: 1233213,
                     message: '成功'
                 }))
 
             }).on('error', err => {
                 reject(
-                    new ErrorModel({
-                        bodymessage: null,
+                    new ErrorModel<any>({
+                        bodyMessage: null,
                         subcode: 1233213,
                         message: `message:${err.message},stack:${err.stack}`
                     })
@@ -103,7 +103,7 @@ function request(opt: requestModel, form: { [P: string]: any }) {
 
                 
                 resolve(new SuccessModel({
-                    bodymessage: data,
+                    bodyMessage: data,
                     subcode: 1233213,
                     message: '成功'
                 }))
@@ -113,7 +113,7 @@ function request(opt: requestModel, form: { [P: string]: any }) {
         req.on('error', err => {
             reject(
                 new ErrorModel({
-                    bodymessage: null,
+                    bodyMessage: null,
                     subcode: 1233213,
                     message: `message:${err.message},stack:${err.stack}`
                 })

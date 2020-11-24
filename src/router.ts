@@ -65,7 +65,7 @@ function middlewareFn(methods: Array<Function>) {
         try {
             await nextFn()
         } catch (err) {
-            log.error(ctx, err, 0)
+            log.error({ctx, error: err, resTime: 0})
             await next()
         }
     }
