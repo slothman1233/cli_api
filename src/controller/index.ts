@@ -21,11 +21,19 @@ async function testBelongs() {
     const res = await Test1.BelongsToTest()
 
     return new SuccessModel({
-        bodymessage: res,
+        bodyMessage: res,
         subcode: 1233213,
         message: '成功'
     })
 
+}
+
+async function testpostC(res:any){
+    return new SuccessModel({
+        bodyMessage: res,
+        subcode: 1233213,
+        message: '成功'
+    })
 }
 
 /**
@@ -35,14 +43,14 @@ async function mongodb_getuserinfo(): Promise<SuccessModel<IUserModel[]>> {
     try {
         const res = await selectAll()
         return new SuccessModel({
-            bodymessage: res,
+            bodyMessage: res,
             subcode: 1233213,
             message: '成功'
         })
     } catch (err) {
         return new ErrorModel({
             message: err.message,
-            bodymessage: null,
+            bodyMessage: null,
             subcode: 1123123
 
         })
@@ -58,14 +66,14 @@ async function mongodb_getuserbyid(id: string): Promise<SuccessModel<IUserModel>
         const res = await selectById(id)
 
         return new SuccessModel({
-            bodymessage: res,
+            bodyMessage: res,
             subcode: 1233213,
             message: '成功'
         })
     } catch (err) {
         return new ErrorModel({
             message: err.message,
-            bodymessage: null,
+            bodyMessage: null,
             subcode: 123123123
         })
     }
@@ -81,14 +89,14 @@ async function mongodb_selectmany(conditions: FilterQuery<IUserModel>) {
     try {
         const res = await selectmany(conditions)
         return new SuccessModel({
-            bodymessage: res,
+            bodyMessage: res,
             subcode: 1233213,
             message: '成功'
         })
     } catch (err) {
         return new ErrorModel({
             message: err.message,
-            bodymessage: null,
+            bodyMessage: null,
             subcode: 123123123
         })
     }
@@ -107,7 +115,7 @@ async function mongodb_selectPageQuery({ pageIndex = 0, pageSize = 10, sort, con
 
         const count = await selectCount(conditions)
         return new SuccessModel({
-            bodymessage: {
+            bodyMessage: {
                 pageTotal: count,
                 data: res
             },
@@ -118,7 +126,7 @@ async function mongodb_selectPageQuery({ pageIndex = 0, pageSize = 10, sort, con
     } catch (err) {
         return new ErrorModel({
             message: err.message,
-            bodymessage: null,
+            bodyMessage: null,
             subcode: 123123123
         })
     }
@@ -134,14 +142,14 @@ async function mongodb_update(conditionObj: any, data: IUserModel): Promise<body
     try {
         const res = await update(conditionObj, data)
         return new SuccessModel({
-            bodymessage: res,
+            bodyMessage: res,
             subcode: 1233213,
             message: '成功'
         })
     } catch (err) {
         return new ErrorModel({
             message: err.message,
-            bodymessage: null,
+            bodyMessage: null,
             subcode: 123123123
         })
     }
@@ -156,14 +164,14 @@ async function mongodb_deleteById(id: any): Promise<bodyModel<IUserModel>> {
     try {
         const res = await deleteById(id)
         return new SuccessModel({
-            bodymessage: res,
+            bodyMessage: res,
             subcode: 1233213,
             message: '成功'
         })
     } catch (err) {
         return new ErrorModel({
             message: err.message,
-            bodymessage: null,
+            bodyMessage: null,
             subcode: 123123123
         })
     }
@@ -178,14 +186,14 @@ async function mongodb_deleteMany(conditionObj: FilterQuery<IUserModel>): Promis
     try {
         const res = await deleteMany(conditionObj)
         return new SuccessModel({
-            bodymessage: res,
+            bodyMessage: res,
             subcode: 1233213,
             message: '成功'
         })
     } catch (err) {
         return new ErrorModel({
             message: err.message,
-            bodymessage: null,
+            bodyMessage: null,
             subcode: 123123123
         })
     }
@@ -199,14 +207,14 @@ async function mongodb_create(data: CreateQuery<IUserModel>, options?: SaveOptio
     try {
         const res = await create(data, options)
         return new SuccessModel({
-            bodymessage: res,
+            bodyMessage: res,
             subcode: 1233213,
             message: '成功'
         })
     } catch (err) {
         return new ErrorModel({
             message: err.message,
-            bodymessage: null,
+            bodyMessage: null,
             subcode: 123123123
         })
     }
@@ -214,6 +222,7 @@ async function mongodb_create(data: CreateQuery<IUserModel>, options?: SaveOptio
 
 export {
     testBelongs,
+    testpostC,
     mongodb_getuserinfo,
     mongodb_getuserbyid,
     mongodb_selectmany,

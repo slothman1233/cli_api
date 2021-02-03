@@ -1,34 +1,45 @@
 
 import log4js from './index'
 import { Context } from 'koa'
-import { isDev, isDocker } from '../../common/utils/env'
+import { isDev, isDocker, notGa, isGa } from '../../common/utils/env'
+import { getNetIp } from '../../common/utils/getip'
 
 let errorLog = log4js.getLogger('errorLog') //此处使用category的值
 let resLog = log4js.getLogger('responseLog') //此处使用category的值
 let debugLog = log4js.getLogger('debugLog')
 
-if (isDocker || isDev) {
+if (notGa) {
     resLog.info = console.log
     errorLog.error = console.error
     debugLog.debug = console.log
 }
 
 
+//只在非正式环境和非docker环境下答应
 const info = function (ctx: Context, resTime: number) {
+    if (isGa || isDocker) { return }
     if (ctx) {
         resLog.info(formatRes(ctx, resTime))
     }
 }
 
-const error = function ({ ctx, error, resTime }: { ctx: Context, error: any, resTime: number }) {
+//在任何环境下都打印
+const error = function ({ ctx, error, resTime }: { ctx?: Context, error: any, resTime?: number }) {
+
     if (ctx && error) {
-        errorLog.error(formatError(ctx, error, resTime))
-    }else{
+        // errorLog.error(formatError(ctx, error, resTime))
+        console.error(formatError(ctx, error, resTime))
+    } else {
         console.error(error)
     }
 }
 
-const _log = function (str: any): void {
+//只在非正式环境和非docker环境下答应
+const _log = function (...arg: any[]): void {
+    if (isGa || isDocker) { return }
+    if (!arg || arg.length === 0) { return }
+    const str = arg.join(',')
+
     try {
         if (!str) {
             debugLog.debug('null')
@@ -45,14 +56,14 @@ const log = { info, error, log: _log }
 //格式化请求日志
 const formatReqLog = function (ctx: Context, resTime: number): string {
 
-    let getClientIp = function (ctx: Context) {
-        const req = ctx.req
-        return req.headers['x-forwarded-for'] ||
-            req.connection.remoteAddress ||
-            req.socket.remoteAddress ||
-            (<any>req.connection).socket.remoteAddress || ''
-    }
-    let ip = getClientIp(ctx).match(/\d+.\d+.\d+.\d+/) || getClientIp(ctx)
+    // let getClientIp = function (ctx: Context) {
+    //     const req = ctx.req
+    //     return req.headers['X-Forwarded-For'] || // 判断是否有反向代理 IP
+    //         req.connection.remoteAddress || // 判断 connection 的远程 IP
+    //         req.socket.remoteAddress ||  // 判断后端的 socket 的 IP
+    //         (<any>req.connection).socket?.remoteAddress || ''
+    // }
+    let ip = getNetIp(ctx)
 
     let logText = ''
     //访问方法
@@ -64,11 +75,13 @@ const formatReqLog = function (ctx: Context, resTime: number): string {
     //客户端ip
     logText += 'request client ip:  ' + ip + '\n'
 
+    logText += 'request client ips:  ' + ctx.request.ips + '\n'
+
     //请求参数
     if (method === 'GET') {
         logText += 'request query:  ' + JSON.stringify(ctx.query) + '\n'
     } else {
-        logText += 'request body: ' + '\n' + JSON.stringify(ctx.request.body) + '\n'
+        // logText += 'request body: ' + '\n' + JSON.stringify(ctx.request.body) + '\n'
     }
 
     //服务器响应时间
@@ -90,7 +103,7 @@ const formatRes = function (ctx: Context, resTime: number) {
     logText += 'response status: ' + ctx.res.statusCode + '\n'
 
     //响应内容
-    logText += 'response body: ' + '\n' + JSON.stringify(ctx.body) + '\n'
+    // logText += 'response body: ' + '\n' + JSON.stringify(ctx.body) + '\n'
 
     //响应日志结束
     logText += '*************** response log end ***************' + '\n'
@@ -117,6 +130,9 @@ const formatError = function (ctx: Context, err: any, resTime: number) {
     //错误详情
 
     logText += 'err stack: ' + err.stack + '\n'
+
+    //响应内容
+    logText += 'response body: ' + '\n' + JSON.stringify(ctx.body) + '\n'
 
     //错误信息结束
     logText += '*************** error log end ***************' + '\n'

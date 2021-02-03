@@ -2,17 +2,17 @@ type bodyModel<T> = {
     subcode: number,
     code?: number,
     message: string,
-    bodymessage: T
+    bodyMessage: T
 }
 
 
 class BaseModel<T> {
-    bodymessage: T
+    bodyMessage: T
     code: number
     subcode: number
     message: string
-    constructor({ bodymessage, code, subcode, message }: bodyModel<T>) {
-        this.bodymessage = bodymessage
+    constructor({ bodyMessage, code, subcode, message }: bodyModel<T>) {
+        this.bodyMessage = bodyMessage
         this.code = code
         this.subcode = subcode
         this.message = message
@@ -23,11 +23,11 @@ class BaseModel<T> {
  * 成功的模型
  */
 class SuccessModel<T> extends BaseModel<T> {
-    constructor({ bodymessage, code, subcode, message }: bodyModel<T>) {
+    constructor({ bodyMessage, code, subcode, message }: bodyModel<T>) {
         if (code) {
-            super({ bodymessage, code, subcode, message })
+            super({ bodyMessage, code, subcode, message })
         } else {
-            super({ bodymessage, code: 0, subcode, message })
+            super({ bodyMessage, code: 0, subcode, message })
         }
     }
 }
@@ -36,11 +36,11 @@ class SuccessModel<T> extends BaseModel<T> {
  * 错误的模型
  */
 class ErrorModel<T> extends BaseModel<T> {
-    constructor({ bodymessage, code, subcode, message }: bodyModel<T>) {
+    constructor({ bodyMessage, code, subcode, message }: bodyModel<T>) {
         if (code) {
-            super({ bodymessage, code, subcode, message })
+            super({ bodyMessage, code, subcode, message })
         } else {
-            super({ bodymessage, code: -1, subcode, message })
+            super({ bodyMessage, code: -1, subcode, message })
         }
     }
 }
