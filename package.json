@@ -30,9 +30,11 @@
         "docker:ga": "cross-env NODE_ENV=docker_ga DOCKER=docker PORT=80 node bin/www.js"
     },
     "dependencies": {
+        "@stl/request": "^1.2.9",
         "cross-env": "^7.0.2",
         "crypto": "^1.0.1",
         "debug": "^4.1.1",
+        "fs-extra": "^9.1.0",
         "koa": "^2.13.0",
         "koa-bodyparser": "^4.3.0",
         "koa-compress": "^5.0.1",
@@ -46,6 +48,7 @@
         "koa-swagger-decorator": "^1.6.8",
         "koa2-cors": "^2.0.6",
         "log4js": "^6.3.0",
+        "lru-cache": "^6.0.0",
         "mongoose": "^5.10.5",
         "mysql2": "^2.1.0",
         "pm2-intercom": "^1.0.0",
@@ -58,9 +61,9 @@
         "xss": "^1.0.8"
     },
     "devDependencies": {
-        "@types/mongoose": "^5.7.36",
         "@types/bluebird": "^3.5.32",
         "@types/debug": "^4.1.5",
+        "@types/fs-extra": "^9.0.6",
         "@types/ioredis": "^4.17.3",
         "@types/jest": "^26.0.13",
         "@types/jsonwebtoken": "^8.5.0",
@@ -75,6 +78,8 @@
         "@types/koa-static": "^4.0.1",
         "@types/koa2-cors": "^2.0.1",
         "@types/log4js": "^2.3.5",
+        "@types/lru-cache": "^5.1.0",
+        "@types/mongoose": "^5.7.36",
         "@types/mysql": "^2.15.15",
         "@types/node": "^14.6.3",
         "@types/supertest": "^2.0.10",

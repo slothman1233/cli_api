@@ -28,6 +28,17 @@ const redisConf = config.redis
 // const router = new koaRouter()
 const app = new koa()
 
+app.use(async (ctx, next) => {
+    ctx.set('Access-Control-Allow-Origin', ctx.headers.origin) // 很奇怪的是，使用 * 会出现一些其他问题
+    ctx.set('Access-Control-Allow-Credentials', 'true')
+    ctx.set(
+        'Access-Control-Allow-Headers',
+        'Content-Type,Authorization,token,operateName, operateUid, sign,timestamp,nonce,accessKey'
+    )
+    ctx.set('Access-Control-Allow-Methods', 'OPTIONS,GET,HEAD,PUT,POST,DELETE,PATCH')
+
+    await next()
+})
 
 //添加gzip压缩插件
 app.use(compress({
