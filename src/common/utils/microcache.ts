@@ -1,39 +1,43 @@
 /* lru 缓存
   */
 
-import LRU from 'lru-cache'
+ import LRU from 'lru-cache'
 
-const option = {
-    max: 500,
-    length: function (n: any, key: any) { return n * 2 + key.length },
-    // dispose: function (key: any, n: any) { },
-    maxAge: 1000 * 60 * 60
-}
-
-const t = `@-@-@`
-
-class microCache {
-  micro: LRU<any, any>
-  constructor(options: any = option) {
-      this.micro = new LRU(options)
-  }
-
-
-
-  set(k: any, v: any, type: string) {
-      this.micro.set(k, `${v}${t}${type}`)
-  }
-
-  get(k: any) {
-      const v = this.micro.get(k)
-      if(!v){return null}
-      const ary = v.split(t)
-      return { value: ary[0], type: ary[1] }
-      
-  }
-}  
-
+ const option = {
+     max: 10000,
+     maxAge: 1000 * 60 * 60 * 24
+ }
  
-export default microCache
-
-  
+ const t = `@-@-@`
+ 
+ class microCache {
+   micro: LRU<any, any>
+   constructor(options: any = option) {
+       this.micro = new LRU(options)
+   }
+ 
+ 
+ 
+   set(k: any, v: any) {
+       this.micro.set(k, v)
+   }
+ 
+   get(k: any) {
+       const v = this.micro.get(k)
+       if (!v) { return null }
+       return v
+   }
+ 
+   //是否存在某个key
+   indexOfKey(key: string) {
+       let keys = this.micro.keys()
+       return keys.indexOf(key) >= 0
+   }
+ 
+ }
+ 
+ 
+ export default microCache
+ 
+ 
+ 
