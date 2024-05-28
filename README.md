@@ -4,7 +4,6 @@
 
 ```bash
 nodejs 11
-npm 6.9.0
 ```
 
 `
