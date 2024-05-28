@@ -4,7 +4,9 @@ import { Context } from 'koa'
 import getSquareCacheList from '../cache/redis/test'
 import { request, summary, prefix, tags, body, responses, description, query, middlewares } from 'koa-swagger-decorator'
 import { test_middleware } from '../middleware/test'
-import { addTest, updateTest, updateTestById, getTestList, getTestById, delTestById, HasManyTest1 } from '../services/test.services'
+import testservices from '../services/test.services'
+
+const { addTest, updateTest, updateTestById, getTestList, getTestById, delTestById, HasManyTest1 }  = testservices
 
 import log from '../common/utils/logger'
 import { mongodb_create, testpostC, mongodb_deleteById, mongodb_deleteMany, mongodb_getuserbyid, mongodb_getuserinfo, mongodb_selectmany, mongodb_selectPageQuery, mongodb_update, testBelongs } from '../controller'

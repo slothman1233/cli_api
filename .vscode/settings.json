@@ -32,7 +32,7 @@
         "html"
     ],
     "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true
+        "source.fixAll.eslint": "explicit"
     },
     "typescript.updateImportsOnFileMove.enabled": "always",
     "tabnine.experimentalAutoImports": true,

@@ -11,7 +11,6 @@
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
         "noImplicitAny": true,
-        "suppressImplicitAnyIndexErrors": true,
         "noUnusedParameters": false,
         "noUnusedLocals": false,
         "noImplicitReturns": true,
@@ -21,10 +20,18 @@
         "sourceMap": true
     },
     "presets": [
-        ["env", {"targets": {"node": "current"}}]
-      ],
-      "plugins": ["transform-decorators-legacy"],
-
+        [
+            "env",
+            {
+                "targets": {
+                    "node": "current"
+                }
+            }
+        ]
+    ],
+    "plugins": [
+        "transform-decorators-legacy"
+    ],
     "include": [
         "src/**/*"
     ],

@@ -30,7 +30,6 @@
         "docker:ga": "cross-env NODE_ENV=docker_ga DOCKER=docker PORT=80 node bin/www.js"
     },
     "dependencies": {
-        "wl-request": "^1.2.9",
         "cross-env": "^7.0.2",
         "crypto": "^1.0.1",
         "debug": "^4.1.1",
@@ -58,6 +57,7 @@
         "sequelize-typescript": "^2.0.0-beta.0",
         "supertest": "^4.0.2",
         "tslib": "^2.0.1",
+        "wl-request": "^1.2.8",
         "xss": "^1.0.8"
     },
     "devDependencies": {
@@ -79,7 +79,7 @@
         "@types/koa2-cors": "^2.0.1",
         "@types/log4js": "^2.3.5",
         "@types/lru-cache": "^5.1.0",
-        "@types/mongoose": "^5.7.36",
+        "@types/mongoose": "^5.11.97",
         "@types/mysql": "^2.15.15",
         "@types/node": "^14.6.3",
         "@types/supertest": "^2.0.10",
@@ -97,7 +97,7 @@
         "nodemon": "^2.0.4",
         "ts-jest": "^26.3.0",
         "ts-node": "^9.0.0",
-        "typescript": "^4.0.2"
+        "typescript": "~4.0.2"
     },
     "author": "",
     "license": "ISC"

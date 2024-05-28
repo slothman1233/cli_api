@@ -1,11 +1,7 @@
-
-
-
 export default interface IUser {
-  username: string,
-  password: string,
-  nickname?: number,
-  garden: number,
-  status: number
+  username: string;
+  password: string;
+  nickname?: number;
+  garden: number;
+  status: number;
 }
-

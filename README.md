@@ -1,8 +1,18 @@
-# 基于 koa2+typescript+sequelize+mongodb+log4js+seagger的服务端框架
+# 基于 koa2+typescript+sequelize+mongodb+log4js+seagger 的服务端框架
+
+版本说明
+
+```bash
+nodejs 11
+npm 6.9.0
+```
+
+`
 
 附加说明
+
 ```bash
-默认去掉了掉redis 跟mysql的连接 需要的话 
+默认去掉了掉redis 跟mysql的连接 需要的话
 
   1.在app.ts
   sequelizeInit()
@@ -18,22 +28,25 @@
 需要使用mongodb的话
 
   在app.ts 里面
-  
+
   1.import './db/mongodb'  恢复这段话
 
   2.在common/config/env 文件修改mongodb对应的配置即可
 
 ```
+
 运行命令（输入完成后浏览[http://localhost:3000/api/swagger-html](http://localhost:3000/api/swagger-html)即可--如果修改了端口请自行调整端口）
+
 ```bash
 
 npm install 安装依赖
 pm2 install typescript
 
-npm run start 
+npm run start
 ```
 
 命令介绍
+
 ```bash
 npm run start     -----  开发使用
 npm run start:dev -----  dev 环境  采用对应的开发
@@ -58,6 +71,7 @@ npm run docker  -----  在docker下运行
 ```
 
 开发方式
+
 ```bash
 router -> controller -> services ->controller -> router
 
@@ -69,9 +83,10 @@ services(服务):获取数据并格式化数据(跟数据库打交道)
 ```
 
 目录说明——(未说明的部分请参照 vue-cli 文档)
+
 ```
 ├── coverage  单元测试报告文件夹
-├── logs  pm2 下的日志文件 
+├── logs  pm2 下的日志文件
 │   ├── log4js 程序日志
 │   └── pm2 系统日志
 ├── dist  生产代码文件夹
@@ -127,7 +142,7 @@ services(服务):获取数据并格式化数据(跟数据库打交道)
 ├── test  单元测试文件夹(所有的单元测试文件必须以.test.ts结尾)
 ├── .eslintignore eslint忽略文件
 ├── .eslintrc eslint配置文件
-├── docker-compose.yml  docker-compose 文件  
+├── docker-compose.yml  docker-compose 文件
 ├── Dockerfile  docker的配置文件
 ├── jest.config.js  jest 配置文件
 ├── jest.setup.js   jest 的脚本文件
