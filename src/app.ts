@@ -21,6 +21,8 @@ import zlib from "zlib";
 //mongodb 初始化 需要则恢复 需要在config里面配置
 // import './db/mongodb'
 
+import "./common/ws/test1";
+
 // log.log(mdb.toString())
 
 const redisConf = config.redis;

@@ -8,11 +8,6 @@ import app from "../app";
 import dg from "debug";
 import http from "http";
 const debug = dg("demo:server");
-
-// var app = require('../src/app');
-// var debug = require('debug')('demo:server');
-// var http = require('http');
-
 /**
  * Get port from environment and store in Express.
  */
