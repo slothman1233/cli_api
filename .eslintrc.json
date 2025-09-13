@@ -61,8 +61,6 @@
         //"no-unused-vars": 0, //不能有声明后未被使用的变量或参数
         "eqeqeq": 2, //必须使用全等
         "no-this-before-super": 2, //在调用super()之前不能使用this或super
-        "no-undef": 2, //不能有未定义的变量
-        "no-nested-ternary": 2, //禁止使用嵌套的三目运算
         "no-extra-semi": 2, //禁止多余的冒号
         "no-dupe-keys": 2, //在创建对象字面量时不允许键重复 {a:1,a:1}
         "prefer-const": 0, //首选const
@@ -81,7 +79,6 @@
         ],
         "semi": [ //never 强制不使用分号    always 强制使用分号
             "error",
-            "never"
         ]
     }
 }

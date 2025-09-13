@@ -21,7 +21,7 @@ import zlib from "zlib";
 //mongodb 初始化 需要则恢复 需要在config里面配置
 // import './db/mongodb'
 
-import "./common/ws/test1";
+// import "./common/ws/test1";
 
 // log.log(mdb.toString())
 
@@ -114,10 +114,11 @@ app.use(
       maxAge: 24 * 60 * 60 * 1000, //单位毫秒
 
       ///redis的设置 需要则恢复  需要在config里面配置
-      // store: redisStore({
-      //     port: redisConf.port,
-      //     host: redisConf.host
-      // })
+      store: redisStore({
+          port: redisConf.port,
+          host: redisConf.host,
+          password: redisConf.password,
+      })
     },
     app
   )

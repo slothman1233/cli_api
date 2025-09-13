@@ -38,35 +38,35 @@ nodejs 11
 
 ```bash
 
-npm install 安装依赖
+pnpm install 安装依赖
 pm2 install typescript
 
-npm run start
+pnpm run start
 ```
 
 命令介绍
 
 ```bash
-npm run start     -----  开发使用
-npm run start:dev -----  dev 环境  采用对应的开发
-npm run start:test  -----  test 环境  采用对应的开发
-npm run start:pre -----  pre 环境  采用对应的开发
-npm run start:ga  -----  ga 环境  采用对应的开发
-npm run build ----- 打包生产代码
-npm run pm2:start ----- pm2 形式进行运行
-npm run pm2:start:dev ----- pm2 dev 环境 形式进行运行
-npm run pm2:start:test ----- pm2 test 环境 形式进行运行
-npm run pm2:start:pre ----- pm2 pre 环境 形式进行运行
-npm run pm2:start:ga ----- pm2 ga 环境 形式进行运行
-npm run pm2:stop  ----- pm2 命令  停止所有程序
-npm run pm2:delete  ----- pm2 命令  删除所有程序
-npm run pm2:reload  ----- pm2 命令  热更新所有程序
-npm run pm2:restart  ----- pm2 命令  重新启动所有程序
-npm run pm2:list  ----- pm2 命令  查看pm2的运行程序列表
-npm run pm2:monit  ----- pm2 命令  监视器
-npm run eslint   ----- eslint 代码规范检测
-npm run jest:test  -----  jest 运行单元测试
-npm run docker  -----  在docker下运行
+pnpm run start     -----  开发使用
+pnpm run start:dev -----  dev 环境  采用对应的开发
+pnpm run start:test  -----  test 环境  采用对应的开发
+pnpm run start:pre -----  pre 环境  采用对应的开发
+pnpm run start:ga  -----  ga 环境  采用对应的开发
+pnpm run build ----- 打包生产代码
+pnpm run pm2:start ----- pm2 形式进行运行
+pnpm run pm2:start:dev ----- pm2 dev 环境 形式进行运行
+pnpm run pm2:start:test ----- pm2 test 环境 形式进行运行
+pnpm run pm2:start:pre ----- pm2 pre 环境 形式进行运行
+pnpm run pm2:start:ga ----- pm2 ga 环境 形式进行运行
+pnpm run pm2:stop  ----- pm2 命令  停止所有程序
+pnpm run pm2:delete  ----- pm2 命令  删除所有程序
+pnpm run pm2:reload  ----- pm2 命令  热更新所有程序
+pnpm run pm2:restart  ----- pm2 命令  重新启动所有程序
+pnpm run pm2:list  ----- pm2 命令  查看pm2的运行程序列表
+pnpm run pm2:monit  ----- pm2 命令  监视器
+pnpm run eslint   ----- eslint 代码规范检测
+pnpm run jest:test  -----  jest 运行单元测试
+pnpm run docker  -----  在docker下运行
 ```
 
 开发方式
